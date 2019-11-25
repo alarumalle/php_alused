@@ -25,6 +25,6 @@ $raamatud = array(
     'kolmas'=>array('pealkir'=>'Hüljatud','autor'=>'Victor Hugo', 'zanr'=>'romaan', 'aasta'=>'1947')
 );
 
-//foreach ($raamatud as $raamat){
-//    echo "$raamat<br>"; 
-//}
+foreach ($raamatud as $raamat){
+    echo "\n", $raamat['pealkiri'], "\t\t", $raamat['autor'];
+}
