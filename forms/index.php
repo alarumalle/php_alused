@@ -9,7 +9,7 @@
     <title>06 - PHP - Vormid</title>
 </head>
 <body>
-<h1>Pood OÜ</h1>
+<h1>Kauplus OÜ</h1>
 
 <!--action on kus asub t88tlus, kuhu saadetakse andmed-->
 <!--method ytleb mil viisil need andmed saadetakse l@bi veebi-->
@@ -20,5 +20,6 @@
     Toode 3 <input type="text" name="t3"><br>
     <input type="submit" value="Saada">
 </form>
+
 </body>
 </html>
