@@ -14,7 +14,7 @@
 <!--action on kus asub t88tlus, kuhu saadetakse andmed-->
 <!--method ytleb mil viisil need andmed saadetakse l@bi veebi-->
 <!--saadetavate el name peab olema m@@ratletud, muidu andmed l@hevad 6hku ja ei j6ua serverini-->
-<form action="ylesanne3_teostamine.php" method="get">
+<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="get">
     Kera raadius <input type="text" name="r1"><br><br>
     Koonuse pohja raadius <input type="text" name="r2"><br>
     Koonuse korgus <input type="text" name="k_korgus"><br><br>
