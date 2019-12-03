@@ -22,3 +22,18 @@ for ($indeks = 0; $indeks < strlen($sisend); $indeks++) {
 
 echo '<hr><br>';
 
+//Koosta tekstiväli, mis kuvab kasutaja sisestatud sõnumeid. Kasutaja ropud sõnad asendatakse tärnidega.
+//Näiteks: sisend–>Sa oled täielik noob; väljund–>Sa oled täielik ***
+
+$roppSonad = array('kurat', 'noob');
+$lause = $_GET[$lause];
+foreach ($roppSonad as $sona) {
+    $asendus = '';
+    for ($loendur = 0; $loendur < strlen($sona); $loendur++){
+        $asendus = '*';
+    }
+    echo $asendus;
+}
+
+echo '<hr><br>';
+
