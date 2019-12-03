@@ -37,3 +37,9 @@ foreach ($roppSonad as $sona) {
 
 echo '<hr><br>';
 
+//Kasutajalt saadud eesnime ja perenime põhjal luuakse talle email lõpuga @hkhk.edu.ee. Kusjuures täpitähed asendatakse ä->a, ö->o, ü->y, õ->o ja kogu email on väikeste tähtedega
+//Näiteks: sisend–>Ülle ja Doos; väljund–>ylle.doos@hkhk.edu.ee
+
+$eesnimi = $_GET[$eesnimi];
+$perenimi = $_GET[$perenimi];
+
