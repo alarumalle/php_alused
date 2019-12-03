@@ -12,3 +12,13 @@ $nimi = ucfirst($nimi);
 echo 'Tere '.$nimi;
 echo '<hr><br>';
 
+//Kuna on teada, et PHP käsitleb teksti kui massiivi, siis peaks saama seda tsükli abil nö. tükeldada. Ülesandeks on etteantud teksti iga tähe järgi lisada punkt.
+
+$sisend = $_GET['sisend'];
+for ($indeks = 0; $indeks < strlen($sisend); $indeks++) {
+    $tahemark = strtoupper($sisend[$indeks]);
+    echo $tahemark, '.';
+}
+
+echo '<hr><br>';
+
