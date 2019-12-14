@@ -13,15 +13,46 @@ vähemalt viis sümbolit pikad.-->
 <body>
 <h2>Andmed</h2>
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="get">
-    Soidu algusaeg <input type="text" name="algus"><br><br>
-    Soidu loppaeg <input type="text" name="lopp"><br><br>
+    Soidu algusaeg <input type="text" name="algus" placeholder="HH:MM"><br><br>
+    Soidu loppaeg <input type="text" name="lopp" placeholder="HH:MM"><br><br>
     <input type="submit" value="Arvuta">
 </form>
 <!--arvutus ja andmete t88tlemine-->
 <?php
 
-$andmed = 'ajad.csv';
+$andmedFail = 'ajad.csv';
 $algus = $_GET['algus'];
 $lopp = $_GET['lopp'];
+
+if(strlen($algus) == 0 or strlen($lopp) == 0){
+    echo 'Sisesta korrektsed ajad';
+} else {
+    $ajad = array();
+    foreach ($_GET as $ajad) {
+        $ajad = explode(':', $ajad);
+        $ajad = time(H:i);
+        $ajaAndmed[] = $ajad;
+    }
+    $vahe = $ajaAndmed[1] - $ajaAndmed[0];
+    $tunnid = (int)($vahe / (60 * 60));
+    $minutid = $vahe % (60 * 60) / 60;
+    $ridaFaili = $algus.";".$lopp.";".$tunnid.";".$minutid."\n";
+    $salvestaFaili = file_put_contents($andmedFail, $ridaFaili,FILE_APPEND | LOCK_EX);
+    if($salvestaFaili !== false) {
+        echo 'Salvestatud'!;
+    } else {
+        echo 'Sisesta andmed';
+    }
+}
+echo '<hr>';
+echo '<table>'
+$failisisu = fopen($andmedFail, 'r') or die('Ei leia faili');
+$jrk = 1;
+while (!=feof($failisisu)){
+    $rida = fgetcsv($failisisu, filesize($andmedFail), ';');
+    echo '<tr>';
+}
+fclose($failisisu);
+echo '</table>';
 ?>
 
