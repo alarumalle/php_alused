@@ -12,38 +12,30 @@ $andmedFail = 'soiduaeg.csv';
 $algus = $_GET['algus'];
 $lopp = $_GET['lopp'];
 
-if(strlen($algus) == 0 or strlen($lopp) == 0){echo 'Sisesta korrektsed ajad';
+if(strlen($algus) == 0 or strlen($lopp) == 0){echo '<a href="soiduaeg_vorm.php">Sisesta kõik andmed!</a>';
 } else {
-    $ajad = array();
-    foreach ($_GET as $ajad) {
-        $ajad = explode(':', $ajad);
-        $ajad = mktime($ajad[0], $ajad[1], 0,date('m', time()),date('d', time()),date('Y', time()));
-//      l@bi tsykkli pannakse ajad massiivi, aeg0 on algus, aeg1 on lopp
-        $ajaAndmed[] = $ajad;
-    }
-    $vahe = $ajaAndmed[1] - $ajaAndmed[0];
-    $tunnid = (int)($vahe / (60 * 60));
-    $minutid = $vahe % (60 * 60) / 60;
-    $ridaFaili = $algus.";".$lopp.";".$tunnid.";".$minutid."\n";
-    $salvestaFaili = file_put_contents($andmedFail, $ridaFaili,FILE_APPEND | LOCK_EX);
-    if($salvestaFaili !== false) {
-        echo 'Salvestatud';
+// pikkuse kontroll
+    if (strlen($algus) != 5 or strlen($lopp) != 5) {
+        echo '<a href="soiduaeg_vorm.php">Sisesta andmed õiges formaadis!</a>';
     } else {
-        echo 'Sisesta andmed';
+        $ajaAndmed = array();
+        foreach ($_GET as $aeg) {
+            $aeg = explode(':', $aeg);
+            $aeg = mktime($aeg[0], $aeg[1], 0, date('m', time()), date('d', time()), date('Y', time()));
+//      l@bi tsykkli pannakse ajad massiivi, aeg0 on algus, aeg1 on lopp
+            $ajaAndmed[] = $aeg;
+        }
+        $vahe = $ajaAndmed[1] - $ajaAndmed[0];
+        $tunnid = (int)($vahe / (60 * 60));
+        $minutid = $vahe % (60 * 60) / 60;
+        $ridaFaili = $algus . ";" . $lopp . ";" . $tunnid . ";" . $minutid . "\n";
+        $salvestaFaili = file_put_contents($andmedFail, $ridaFaili, FILE_APPEND | LOCK_EX);
+        if ($salvestaFaili !== false) {
+            echo 'Salvestatud';
+            echo '<a href="soiduaeg_vorm.php">Sisesta andmed!</a>';
+        }
     }
 }
-echo '<hr>';
-echo '<table>';
-$failisisu = fopen($andmedFail, 'r') or die('Ei leia faili');
-$jrk = 1;
-while (!feof($failisisu)){
-    $rida = fgetcsv($failisisu, filesize($andmedFail), ';');
-    echo '<tr>';
-}
-fclose($failisisu);
-echo '</table>';
-?>
-
 
 echo '<hr>';
 echo '<h3>Andmed</h3>';
@@ -58,10 +50,10 @@ echo '<table>';
     </tr>
     </thead>';
     echo '<tbody>';
-    $sisu = fopen($andmeFail, 'r') or die('Ei leia faili!');
+    $failisisu = fopen($andmedFail, 'r') or die('Ei leia faili!');
     $jrk = 1;
-    while(!feof($sisu)){
-    $rida = fgetcsv($sisu, filesize($andmeFail),';');
+    while(!feof($failisisu)){
+        $rida = fgetcsv($failisisu, filesize($andmedFail), ';');
     echo '<tr>';
         $arv = count($rida); //rea väljade arv
         if($arv == 4) {
@@ -71,6 +63,7 @@ echo '<table>';
         echo '</tr>';
     }
     }
-    fclose($sisu);
+    fclose($failisisu);
     echo '<tbody>';
     echo '</table>';
+    ?>
