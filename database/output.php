@@ -1,4 +1,5 @@
 <?php
+//see on ka abifail funktsioonidega
 //tabel pealkirjaga
 function tabel($andmed, $pealkirjad){
     echo '<table>';
@@ -27,5 +28,15 @@ function otsinguVorm(){
     <form action="" method="get">
     <input type="text" name="otsi">
     <input type="submit" value="Otsi">
+    </form>';
+}
+
+function lisaAndmedVorm(){
+    echo '
+        <form action="" method="get">
+        Eesnimi <input type="text" name="enimi">
+        Perenimi <input type="text" name="pnimi">
+        Kontakt <input type="text" name="kontakt">
+        <input type="submit" value="Salvesta">
     </form>';
 }

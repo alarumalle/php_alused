@@ -1,5 +1,5 @@
 <?php
-// ühenduse loomine
+// kogutud funktsioonid andmebaasiga t88tamiseks, see on ka abifail
 function connect($host, $user, $pass, $dbname){
     // ühendus andmebaasiga
     $link = mysqli_connect($host, $user, $pass, $dbname);
