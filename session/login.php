@@ -32,6 +32,10 @@ print_r($_SESSION);
 
 //kui session on loodod
 //ytle teretulemast
-if (!empty($_SESSION[''])){
+if (!empty($_SESSION['kasutaja'])){
     echo 'Tere tulemast', '.$_SESSION'['kasutaja'].'!<br>';
+    echo '<a href="logout.php">Logi valja</a>';
+} else {
+    //kui ei ole siis n@idatakse logimisvormi
+    loginVorm();
 }
