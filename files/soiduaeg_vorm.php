@@ -12,7 +12,7 @@
 </head>
 <body>
 <h2>Andmed</h2>
-<form action="soiduaeg.php>" method="get">
+<form action="soiduaeg.php" method="get">
     <label for="algus">Soidu algus: </label>
     <input type="text" name="algus" id="algus" placeholder="HH:MM"><br><br>
     <label for="lopp">Soidu lopp: </label>

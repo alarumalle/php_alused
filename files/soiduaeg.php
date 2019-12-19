@@ -19,19 +19,19 @@ if(strlen($algus) == 0 or strlen($lopp) == 0){echo '<a href="soiduaeg_vorm.php">
         echo '<a href="soiduaeg_vorm.php">Sisesta andmed õiges formaadis!</a>';
     } else {
         $ajaAndmed = array();
-        foreach ($_GET as $aeg) {
-            $aeg = explode(':', $aeg);
+        foreach ($_GET as $aeg) { //get on massiiv
+            $aeg = explode(':', $aeg); //explode tekitab massiivi
             $aeg = mktime($aeg[0], $aeg[1], 0, date('m', time()), date('d', time()), date('Y', time()));
 //      l@bi tsykkli pannakse ajad massiivi, aeg0 on algus, aeg1 on lopp
-            $ajaAndmed[] = $aeg;
+            $ajaAndmed[] = $aeg; //1 el on alguse sekundid, 2 el on lopu sekundid
         }
         $vahe = $ajaAndmed[1] - $ajaAndmed[0];
-        $tunnid = (int)($vahe / (60 * 60));
-        $minutid = $vahe % (60 * 60) / 60;
-        $ridaFaili = $algus . ";" . $lopp . ";" . $tunnid . ";" . $minutid . "\n";
-        $salvestaFaili = file_put_contents($andmedFail, $ridaFaili, FILE_APPEND | LOCK_EX);
+        $tunnid = (int)($vahe / (60 * 60));//int teisendab taisarvuks
+        $minutid = $vahe % (60 * 60) / 60; //j@@k on koik mis ei mahtunud tundidesse
+        $ridaFaili = $algus . ";" . $lopp . ";" . $tunnid . ";" . $minutid . "\n"; //rida
+        $salvestaFaili = file_put_contents($andmedFail, $ridaFaili, FILE_APPEND | LOCK_EX); //teeb faili lahti lug kirj ja salvestab andmed
         if ($salvestaFaili !== false) {
-            echo 'Salvestatud';
+            echo 'Salvestatud ';
             echo '<a href="soiduaeg_vorm.php">Sisesta andmed!</a>';
         }
     }

@@ -9,7 +9,7 @@ while(!feof($minu_csv)){
     $arv = count($rida); //tulbad infoga
     if ($arv == 3){
         for ($i = 0; $i<$arv; $i++) {
-            echo $rida[$i];
+            echo utf8_encode($rida[$i]); //t@pit@hed oigesti
         }
     }
     echo '<br>';

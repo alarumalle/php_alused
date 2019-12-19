@@ -58,7 +58,7 @@ function tabelKustutaMuuda($andmed, $pealkirjad){
             echo '<td>'.$tabeliRida['pnimi'].'</td>';
             echo '<td>'.$tabeliRida['kontakt'].'</td>';
             echo '<td><a href="?kustutaID='.$tabeliRida['id'].'">Kustuta</a></td>';
-            echo '<td><a href="?muudaID='.$klient['id'].'">muuda</a></td>';
+            echo '<td><a href="?muudaID='.$tabeliRida['id'].'">muuda</a></td>';
         echo '</tr>';
         }
     echo '</body>';
@@ -68,7 +68,7 @@ function tabelKustutaMuuda($andmed, $pealkirjad){
 
 function muudaAndmedVorm($andmed){
     echo '
-  <form action="" method="post">
+  <form action="" method="get">
 //  hidden element on olemas, aga seda ei kuvata
     <input type="text" name="id" value="'.$andmed['id'].'" hidden><br>
     <label for="enimi">Eesnimi</label> <input type="text" name="enimi" id="enimi" value="'.$andmed['enimi'].'"><br>

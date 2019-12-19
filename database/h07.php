@@ -39,4 +39,8 @@ if(!empty($_GET['muudaID'])){
         muudaAndmedVorm($result[0]);
     }
 }
+
 //kui vaj muuda nupule, andmed on lingi nimes
+if (!empty($_GET['muudanyyd']) and $_GET['muudanyyd']=='Muuda'){
+
+}
