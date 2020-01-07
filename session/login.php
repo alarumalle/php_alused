@@ -16,7 +16,7 @@ if (!empty($_POST['nimi']) and !empty($_POST['parool'])){
 
     echo $nimi, $parool;
 //kysime kas selline kasutaja on
-$sql = 'SELECT * FROM kasutajad WHERE nimi="'.$nimi'" AND parool="'.md5($parool).'"';
+$sql = 'SELECT * FROM kasutajad WHERE nimi="'.$nimi.'" AND parool="'.md5($parool).'"';
 $result = getData($sql, $ikt);
 
 echo '<pre>';
